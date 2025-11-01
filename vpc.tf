@@ -41,7 +41,7 @@ resource "aws_route_table" "this" {
 }
 
 resource "aws_subnet" "public" {
-  for_each = locals.public_subnets_map
+  for_each = local.public_subnets_map
 
   vpc_id                  = aws_vpc.this.id
   cidr_block              = each.value.cidr_block
