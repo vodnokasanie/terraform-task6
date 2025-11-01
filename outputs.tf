@@ -1,27 +1,28 @@
 output "vpc_id" {
-    value = aws_vpc.this.id
+  value = aws_vpc.this.id
 }
 
 output "vpc_cidr" {
-    value = aws_vpc.this.cidr_block
+  value = aws_vpc.this.cidr_block
 }
 
 output "public_subnet_ids" {
-    value = aws_subnet.public[*].id
+  value = [for subnet in values(aws_subnet.public) : subnet.id]
 }
 
 output "public_subnet_cidr_block" {
-    value = aws_subnet.public[*].cidr_block
+  value = [for subnet in values(aws_subnet.public) : subnet.cidr_block]
 }
 
 output "public_subnet_availability_zone" {
-    value = aws_subnet.public[*].availability_zone
+  value = [for subnet in values(aws_subnet.public) : subnet.availability_zone]
 }
 
+
 output "internet_gateway_id" {
-    value = aws_internet_gateway.this.id
+  value = aws_internet_gateway.this.id
 }
 
 output "routing_table_id" {
-    value = aws_route_table.this.id
+  value = aws_route_table.this.id
 }
